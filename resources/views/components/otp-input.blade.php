@@ -46,8 +46,10 @@
         handleInput(e, i) {
             const input = e.target;
 
-            // Only allow numeric characters and limit to one character
-            input.value = input.value.replace(/\D/g, '').substring(0, 1);
+            // If type is number only allow numeric characters and limit to one character
+            input.value = (this.type === 'number')
+                ? input.value.replace(/\D/g, '').substring(0, 1)
+                : input.value.substring(0, 1);
 
             this.state = Array.from({ length: this.length }).map((element, idx) => {
                 return this.$refs[`otp_${idx + 1}`].value || '';
@@ -65,11 +67,12 @@
             }
         },
         handlePaste(e) {
-            // Get the pasted data, filter only numeric characters, and limit it to the maximum length of inputs
-            const paste = e.clipboardData.getData('text').replace(/\D/g, '').substring(0, this.length);
-            const inputs = Array.from(Array(this.length));
+            // Get the pasted data, if type is number filter only numeric characters, and limit it to the maximum length of inputs
+            const paste = (this.type === 'number')
+                ? e.clipboardData.getData('text').replace(/\D/g, '').substring(0, this.length)
+                : e.clipboardData.getData('text');
 
-            @this.set('{{ $statePath }}', paste);
+            const inputs = Array.from(Array(this.length));
 
             inputs.forEach((element, idx) => {
                 if (paste[idx]) {
@@ -77,10 +80,14 @@
                 }
             });
 
+            const focusInputNumber = (paste.length < this.length) ? paste.length+1 : this.length;
+
+            this.$nextTick(() => {
+                this.$refs[`otp_${focusInputNumber}`].focus();
+            });
+
             if (paste.length === this.length) {
-                this.$nextTick(() => {
-                    this.$refs[`otp_${this.length}`].focus();
-                });
+                @this.set('{{ $statePath }}', paste);
             }
 
             e.preventDefault();
