@@ -2,16 +2,16 @@
     "name": "eg-mohamed/filament-otp-input",
     "description": "Otp input for filament",
     "keywords": [
-        "hasan-ahani",
+        "eg-mohamed",
         "laravel",
         "filament",
         "otp-input",
         "filament-form"
     ],
-    "homepage": "https://github.com/hasan-ahani/filament-otp-input",
+    "homepage": "https://github.com/EG-Mohamed/filament-otp-input",
     "support": {
-        "issues": "https://github.com/hasan-ahani/filament-otp-input/issues",
-        "source": "https://github.com/hasan-ahani/filament-otp-input"
+        "issues": "https://github.com/EG-Mohamed/filament-otp-input/issues",
+        "source": "https://github.com/EG-Mohamed/filament-otp-input"
     },
     "license": "MIT",
     "authors": [
@@ -19,6 +19,10 @@
             "name": "Hasan Ahani",
             "email": "hasanahani.ir@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Mohamed Said",
+            "role": "Contributor"
         }
     ],
     "require": {
