@@ -58,7 +58,7 @@ class OtpInput extends Field implements Contracts\CanBeLengthConstrained, Contra
         return $this->evaluate($this->type);
     }
 
-    public function rtl(bool|\Closure $condition = false): static
+    public function rtl(bool|\Closure $condition = true): static
     {
         $this->isRtl = $condition;
 
