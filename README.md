@@ -22,7 +22,7 @@
 You can install the package via composer:
 
 ```bash
-composer require hasan-ahani/filament-otp-input
+composer require eg-mohamed/filament-otp-input
 ```
 
 ## Usage
