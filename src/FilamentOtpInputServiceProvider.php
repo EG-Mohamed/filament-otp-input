@@ -1,8 +1,6 @@
 <?php
 namespace HasanAhani\FilamentOtpInput;
 
-use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

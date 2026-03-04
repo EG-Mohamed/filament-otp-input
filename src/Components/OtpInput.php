@@ -1,15 +1,13 @@
 <?php
 namespace HasanAhani\FilamentOtpInput\Components;
 
-use _PHPStan_11268e5ee\Nette\PhpGenerator\Closure;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
-use Filament\Notifications\Notification;
 use Filament\Support\Concerns\HasExtraAlpineAttributes;
 use Filament\Forms\Components\Concerns;
 use Filament\Forms\Components\Contracts;
+use Filament\Schemas\Components\Contracts\HasAffixActions;
 
-class OtpInput extends Field implements Contracts\CanBeLengthConstrained, Contracts\HasAffixActions
+class OtpInput extends Field implements Contracts\CanBeLengthConstrained, HasAffixActions
 {
     use Concerns\CanBeAutocapitalized;
     use Concerns\CanBeAutocompleted;

@@ -1,7 +1,10 @@
 @php
-    $extraAlpineAttributes = $getExtraAlpineAttributes();
-    $id = $getId();
-    $isConcealed = $isConcealed();
+    $statePath = $getStatePath();
+    $numberInput = $getNumberInput();
+    $isAutofocused = $isAutofocused();
+    $inputType = $getType();
+    $autocomplete = $getAutocomplete();
+    $isRtl = $getInputsContainerDirection();
     $isDisabled = $isDisabled();
     $isPrefixInline = $isPrefixInline();
     $isSuffixInline = $isSuffixInline();
@@ -11,102 +14,89 @@
     $suffixActions = $getSuffixActions();
     $suffixIcon = $getSuffixIcon();
     $suffixLabel = $getSuffixLabel();
-    $statePath = $getStatePath();
-    $numberInput = $getNumberInput();
-    $isAutofocused = $isAutofocused();
-    $inputType = $getType();
-    $autocomplete = $getAutocomplete();
-    $isRtl = $getInputsContainerDirection();
 @endphp
 
 <x-dynamic-component
     :component="$getFieldWrapperView()"
-    :id="$getId()"
-    :label="$getLabel()"
-    :label-sr-only="$isLabelHidden()"
-    :helper-text="$getHelperText()"
-    :hint="$getHint()"
-    :hint-actions="$getHintActions()"
-    :hint-icon="$getHintIcon()"
-    :required="$isRequired()"
-    :state-path="$getStatePath()"
+    :field="$field"
 >
-    <div x-data="{
-        state: $wire.$entangle('{{ $statePath }}'),
-        length: {{ $numberInput }},
-        autoFocus: '{{ $isAutofocused }}',
-        type: '{{ $inputType }}',
-        init: function() {
-            this.$nextTick(() => {
-                if (this.autoFocus) {
-                    this.$refs['otp_1'].focus();
-                }
-            });
-        },
-        handleInput(e, i) {
-            const input = e.target;
-
-            // If type is number only allow numeric characters and limit to one character
-            input.value = (this.type === 'number')
-                ? input.value.replace(/\D/g, '').substring(0, 1)
-                : input.value.substring(0, 1);
-
-            this.state = Array.from({ length: this.length }).map((element, idx) => {
-                return this.$refs[`otp_${idx + 1}`].value || '';
-            }).join('');
-
-            if (input.value && i < this.length) {
+    <div
+        x-data="{
+            state: $wire.entangle('{{ $statePath }}'),
+            length: {{ $numberInput }},
+            autoFocus: '{{ $isAutofocused }}',
+            type: '{{ $inputType }}',
+            init: function() {
                 this.$nextTick(() => {
-                    this.$refs[`otp_${i + 1}`].focus();
-                    this.$refs[`otp_${i + 1}`].select();
+                    if (this.autoFocus) {
+                        this.$refs['otp_1'].focus();
+                    }
                 });
-            }
+            },
+            handleInput(e, i) {
+                const input = e.target;
 
-            if (i === this.length) {
-                @this.set('{{ $statePath }}', this.state);
-            }
-        },
-        handlePaste(e) {
-            // Get the pasted data, if type is number filter only numeric characters, and limit it to the maximum length of inputs
-            const paste = (this.type === 'number')
-                ? e.clipboardData.getData('text').replace(/\D/g, '').substring(0, this.length)
-                : e.clipboardData.getData('text');
+                input.value = (this.type === 'number')
+                    ? input.value.replace(/\D/g, '').substring(0, 1)
+                    : input.value.substring(0, 1);
 
-            const inputs = Array.from(Array(this.length));
+                this.state = Array.from({ length: this.length }).map((element, idx) => {
+                    return this.$refs[`otp_${idx + 1}`].value || '';
+                }).join('');
 
-            inputs.forEach((element, idx) => {
-                if (paste[idx]) {
-                    this.$refs[`otp_${idx + 1}`].value = paste[idx];
+                if (input.value && i < this.length) {
+                    this.$nextTick(() => {
+                        this.$refs[`otp_${i + 1}`].focus();
+                        this.$refs[`otp_${i + 1}`].select();
+                    });
                 }
-            });
 
-            const focusInputNumber = (paste.length < this.length) ? paste.length+1 : this.length;
+                if (i === this.length) {
+                    $wire.set('{{ $statePath }}', this.state);
+                }
+            },
+            handlePaste(e) {
+                const paste = (this.type === 'number')
+                    ? e.clipboardData.getData('text').replace(/\D/g, '').substring(0, this.length)
+                    : e.clipboardData.getData('text');
 
-            this.$nextTick(() => {
-                this.$refs[`otp_${focusInputNumber}`].focus();
-            });
+                const inputs = Array.from(Array(this.length));
 
-            if (paste.length === this.length) {
-                @this.set('{{ $statePath }}', paste);
-            }
-
-            e.preventDefault();
-        },
-        handleBackspace(e) {
-            const ref = e.target.getAttribute('x-ref').split('_')[1];
-            e.target.value = '';
-            const previous = ref - 1;
-
-            if (previous >= 1) {
-                this.$nextTick(() => {
-                    this.$refs[`otp_${previous}`].focus();
-                    this.$refs[`otp_${previous}`].select();
+                inputs.forEach((element, idx) => {
+                    if (paste[idx]) {
+                        this.$refs[`otp_${idx + 1}`].value = paste[idx];
+                    }
                 });
-            }
 
-            e.preventDefault();
-        },
-    }">
+                const focusInputNumber = (paste.length < this.length) ? paste.length+1 : this.length;
+
+                this.$nextTick(() => {
+                    this.$refs[`otp_${focusInputNumber}`].focus();
+                });
+
+                if (paste.length === this.length) {
+                    $wire.set('{{ $statePath }}', paste);
+                }
+
+                e.preventDefault();
+            },
+            handleBackspace(e) {
+                const ref = e.target.getAttribute('x-ref').split('_')[1];
+                e.target.value = '';
+                const previous = ref - 1;
+
+                if (previous >= 1) {
+                    this.$nextTick(() => {
+                        this.$refs[`otp_${previous}`].focus();
+                        this.$refs[`otp_${previous}`].select();
+                    });
+                }
+
+                e.preventDefault();
+            },
+        }"
+        x-on:focus-input.stop="$refs['otp_1'].focus()"
+    >
         <div class="flex justify-between gap-6 fi-otp-input-container" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
             @foreach(range(1, $numberInput) as $column)
                 <x-filament::input.wrapper
@@ -129,7 +119,8 @@
                 >
                     <input
                         {{ $isDisabled ? 'disabled' : '' }}
-                        type="{{ $inputType }}"
+                        type="{{ $inputType === 'number' ? 'text' : $inputType }}"
+                        inputmode="{{ $inputType === 'number' ? 'numeric' : 'text' }}"
                         maxlength="1"
                         x-ref="otp_{{ $column }}"
                         required
@@ -144,20 +135,3 @@
         </div>
     </div>
 </x-dynamic-component>
-
-<style>
-    input.fi-otp-input[type=number] {
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-        overflow: visible;
-    }
-
-    input.fi-otp-input[type=number]::-webkit-inner-spin-button,
-    input.fi-otp-input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        margin: 0
-    }
-</style>
