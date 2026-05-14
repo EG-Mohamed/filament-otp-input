@@ -17,6 +17,12 @@
 
 
 
+## Requirements
+
+- PHP 8.2+
+- Laravel 11.28+ / 12
+- Filament 4.x (compatible with 5.x when released)
+
 ## Installation
 
 You can install the package via composer:
@@ -28,7 +34,7 @@ composer require eg-mohamed/filament-otp-input
 ## Usage
 Inside a form schema, you can use the Otp input like this:
 ```php
-use HasanAhani\FilamentOtpInput\Components;
+use HasanAhani\FilamentOtpInput\Components\OtpInput;
 use Filament\Forms\Form;
 
 public function form(Form $form): Form
@@ -48,7 +54,7 @@ The code above will render a otp input inside the form.
 ## Number inputs
 If the number of entries you want is less or more than the default 4 numbers, you can change it according to the example below
 ```php
-use HasanAhani\FilamentOtpInput\Components;
+use HasanAhani\FilamentOtpInput\Components\OtpInput;
 use Filament\Forms\Form;
 
 public function form(Form $form): Form
@@ -69,7 +75,7 @@ The above code creates 6 inputs for entering the OTP code.
 ## Get Code
 If you need to receive the code after entering it completely, proceed as in the example below
 ```php
-use HasanAhani\FilamentOtpInput\Components;
+use HasanAhani\FilamentOtpInput\Components\OtpInput;
 use Filament\Forms\Form;
 
 public function form(Form $form): Form
@@ -80,7 +86,6 @@ public function form(Form $form): Form
             OtpInput::make('otp')
                 ->numberInput(8)
                 ->afterStateUpdated(function (string $state){
-                    dd($state);
                     // submit form or save record
                 })
                 ->label('Otp'),
@@ -92,7 +97,7 @@ public function form(Form $form): Form
 ## Input type
 By default, the input type is set to "number". If you need to change it to "password" or "text", you can use the following methods:
 ```php
-use HasanAhani\FilamentOtpInput\Components;
+use HasanAhani\FilamentOtpInput\Components\OtpInput;
 use Filament\Forms\Form;
 
 public function form(Form $form): Form
