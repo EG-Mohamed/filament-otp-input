@@ -20,7 +20,7 @@
 ## Requirements
 
 - PHP 8.2+
-- Laravel 11.28+ / 12
+- Laravel 11.28+ / 12 / 13
 - Filament 4.x (compatible with 5.x when released)
 
 ## Installation

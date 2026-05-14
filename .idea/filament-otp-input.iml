@@ -170,6 +170,23 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/zbateson/mail-mime-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zbateson/mb-wrapper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zbateson/stream-decorators" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/danharrin/livewire-rate-limiting" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/filament/schemas" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/iamcal/sql-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kirschbaum-development/eloquent-power-joins" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/pail" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/uri-components" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nette/php-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/orchestra/sidekick" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pestphp/pest-plugin-mutate" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/php-di" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/scrivo/highlight.php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/shiki-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/staabm/side-effects-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php84" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php85" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ueberdosis/tiptap-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

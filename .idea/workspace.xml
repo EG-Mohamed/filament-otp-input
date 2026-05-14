@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0865cdb7-d2f3-43fe-b52a-8aad4819fa59" name="Changes" comment="11">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="0865cdb7-d2f3-43fe-b52a-8aad4819fa59" name="Changes" comment="Migrate tests to use `Schema` instead of `ComponentContainer` and update test dependencies and configuration files to align with upgraded package versions.">
+      <change beforePath="$PROJECT_DIR$/.idea/filament-otp-input.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/filament-otp-input.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/InputTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/InputTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +311,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="11" />
     <MESSAGE value="Update Filament OTP Input to support Filament Forms v4 and v5, PHP 8.2, and Laravel 12" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Filament OTP Input to support Filament Forms v4 and v5, PHP 8.2, and Laravel 12" />
+    <MESSAGE value="Migrate tests to use `Schema` instead of `ComponentContainer` and update test dependencies and configuration files to align with upgraded package versions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrate tests to use `Schema` instead of `ComponentContainer` and update test dependencies and configuration files to align with upgraded package versions." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
